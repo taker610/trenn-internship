@@ -15,21 +15,6 @@ const Home = () => {
     window.scrollTo(0, 0);
   }, []);
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      try {
-        const response = await axios.get("https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections")
-        console.log(response.data)
-        setItems(response.data)
-      } catch (error) {
-        console.log(error)
-      }
-    }
-
-    fetchItems()
-  }, [])
-
-  
 
   return (
     <div id="wrapper">
@@ -37,7 +22,7 @@ const Home = () => {
         <div id="top"></div>
         <Landing />
         <LandingIntro />
-        <HotCollections items={items}/>
+        <HotCollections/>
         <NewItems />
         <TopSellers />
         <BrowseByCategory />
