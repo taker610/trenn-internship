@@ -7,23 +7,12 @@ import axios from 'axios'
 import Slider from 'react-slick'
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
-import 'keen-slider/keen-slider.min.css'
-import { useKeenSlider } from 'keen-slider/react'
+
 
 
 
 const HotCollections = () => {
 
-  const [sliderRef, instanceRef] = useKeenSlider(
-    {
-      slideChanged() {
-        console.log('slide changed')
-      },
-    },
-    [
-      // add plugins here
-    ]
-  )
 
   let settings = {
     dots: true,
@@ -32,7 +21,14 @@ const HotCollections = () => {
     speed: 500,
     slidesToScroll: 1,
     slidesToShow: 4,
-    responsive: true
+    responsive: [
+      {breakpoint: 768,
+        settings: {slideToShow: 2}
+      },
+      {breakpoint: 480,
+        settings: {slidesToShow: 1}
+      }
+    ]
   }
 
   const [items,setItems] = useState([])
@@ -59,7 +55,7 @@ const HotCollections = () => {
   return (
     
     <section id="section-collections" className="no-bottom">
-      <div className="container keen-slider" ref="{sliderRef}">
+      <div className="container">
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
@@ -69,7 +65,7 @@ const HotCollections = () => {
           </div>
           
           {loading
-            ? new Array(4).fill(0).map((_, index) => (
+            ?  ( new Array(4).fill(0).map((_, index) => (
           <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" >
             <div className="nft_coll">
               <div className="nft_wrap skeleton">
@@ -91,13 +87,13 @@ const HotCollections = () => {
               </div>
             </div>
           </div>   
-            )) 
+            )))
 
-          : 
+          : (
           
-          items.map((item) => (
-            
-              <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12 keen-slider__slide" key={item.id}>
+          <Slider {...settings}>
+          {items.map((item) => (
+              <div className="" key={item.id}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
@@ -118,8 +114,9 @@ const HotCollections = () => {
                   </div>
                 </div>
               </div>
-              
-            ))} 
+              ))} 
+              </Slider> 
+            )}
             {/*<div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" >
               <div className="nft_coll">
                 <div className="nft_wrap">

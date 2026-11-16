@@ -7,6 +7,39 @@
  *
  * Copyright (c) 2016 Daniel Eden
  */
+.slick-prev:before {
+  content: "←" !important;
+}
+
+.slick-next:before {
+  content: "→" !important;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-family: Arial !important;
+  color: black !important;
+  font-size: 24px;
+}
+
+
+.nft_coll {
+  margin-right: 10px;
+}
+
+slick-prev,
+.slick-next {
+  z-index: 10;
+}
+
+.slick-prev { left: 10px; }
+.slick-next { right: 10px; }
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  opacity: 1;
+}
 
  .skeleton {
   opacity: .7;
